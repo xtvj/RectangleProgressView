@@ -16,7 +16,10 @@ LoadingView
         app:width="100" />
         
         
+        
         app:mRadian：弧度
+        
         app:time：动画动行周期
+        
         app:width：线条宽度
    
