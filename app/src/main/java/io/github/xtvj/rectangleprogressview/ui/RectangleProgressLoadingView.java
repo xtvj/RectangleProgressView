@@ -3,6 +3,7 @@ package io.github.xtvj.rectangleprogressview.ui;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -66,13 +67,28 @@ public class RectangleProgressLoadingView extends View {
     private Context mContext;
 
     //线条粗细
-    private int mwidth = 20;
+    private int width = 20;
 
 
     public void setmWidth(int width) {
-        mwidth = width;
-        mPaint.setStrokeWidth(mwidth);
+        this.width = width;
+        mPaint.setStrokeWidth(this.width);
         invalidate();
+    }
+
+    //返回线条宽度
+    public int getmWidth(){
+        return width;
+    }
+
+    //返回动画周期时间
+    public int getTime(){
+        return time;
+    }
+
+    //返回弧度
+    public int getmRadian(){
+        return mRadian;
     }
 
     //radian默认弧度
@@ -88,27 +104,34 @@ public class RectangleProgressLoadingView extends View {
     public RectangleProgressLoadingView(Context context) {
         super(context);
 
+
     }
 
     public RectangleProgressLoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(attrs,0);
     }
 
     public RectangleProgressLoadingView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
-
+        init(attrs,0);
         initPaint();
-
         initListener();
-
         initAnimator();
-
         invalidate();
-
         mCurrentState = State.NONE;
 //		mStartingAnimator.start();
 
+    }
+
+
+    private void init(AttributeSet attrs, int defStyle){
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RectangleProgressLoadingView, defStyle, 0);
+        mRadian = a.getInt(R.styleable.RectangleProgressLoadingView_mRadian, 80); //弧度
+        width = a.getInt(R.styleable.RectangleProgressLoadingView_width, 20); //线条精细
+        time = a.getInt(R.styleable.RectangleProgressLoadingView_time, 3000); //动画周期
+        a.recycle();
     }
 
     private Handler handler = new Handler() {
@@ -132,7 +155,7 @@ public class RectangleProgressLoadingView extends View {
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(getResources().getColor(R.color.colorPrimary));
-        mPaint.setStrokeWidth(mwidth);
+        mPaint.setStrokeWidth(width);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setAntiAlias(true);
     }
@@ -168,7 +191,6 @@ public class RectangleProgressLoadingView extends View {
         mAnimatorListener = new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-
             }
 
             @Override
@@ -179,23 +201,18 @@ public class RectangleProgressLoadingView extends View {
 
             @Override
             public void onAnimationCancel(Animator animation) {
-
             }
 
             @Override
             public void onAnimationRepeat(Animator animation) {
-
             }
         };
-
     }
 
     private void initAnimator() {
-
         mStartingAnimator = ValueAnimator.ofFloat(0, 1).setDuration(time);
         mStartingAnimator.addUpdateListener(mUpdateListener);
         mStartingAnimator.addListener(mAnimatorListener);
-
     }
 
     @Override

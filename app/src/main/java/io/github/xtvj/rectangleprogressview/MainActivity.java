@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 
 
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBar.setProgress(20);
+        seekBar.setProgress(rectangleProgressView.getmWidth());
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
         });
 
         SeekBar seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
-        seekBar2.setProgress(40);
+        seekBar2.setProgress(rectangleProgressView.getmRadian()/2);
         seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
