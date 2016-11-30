@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -20,18 +19,13 @@
         android:id="@+id/open"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="open"
-
-        tools:layout_editor_absoluteX="235dp"
-        tools:layout_editor_absoluteY="361dp" />
+        android:text="open"  />
 
     <Button
         android:id="@+id/close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="close"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="362dp" />
+        android:text="close" />
 
     <SeekBar
         android:id="@+id/seekBar"

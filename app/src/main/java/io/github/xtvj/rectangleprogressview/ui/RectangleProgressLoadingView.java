@@ -69,7 +69,7 @@ public class RectangleProgressLoadingView extends View {
     private int mwidth = 20;
 
 
-    public void setmWidth(int width){
+    public void setmWidth(int width) {
         mwidth = width;
         mPaint.setStrokeWidth(mwidth);
         invalidate();
@@ -78,8 +78,9 @@ public class RectangleProgressLoadingView extends View {
     //radian默认弧度
     private int mRadian = 80;
 
-    public void setRadian(int radian){
+    public void setRadian(int radian) {
         mRadian = radian;
+        initPath();
         invalidate();
     }
 
@@ -140,14 +141,16 @@ public class RectangleProgressLoadingView extends View {
 
     private void initPath() {
 
-        rectf = new RectF(mWidth / 10, mWidth / 10, mWidth * 9 / 10, mHeight * 9 / 10);
+        if (rectf == null)
+            rectf = new RectF(mWidth / 10, mWidth / 10, mWidth * 9 / 10, mHeight * 9 / 10);
 
         mPath = new Path();
-        mPath.addRoundRect(rectf, mRadian*2, mRadian*2, Path.Direction.CCW);
+        mPath.addRoundRect(rectf, mRadian * 2, mRadian * 2, Path.Direction.CCW);
 
-        mMeasure = new PathMeasure();
-        mMeasure.setPath(mPath, false);
-
+        if (mMeasure == null) {
+            mMeasure = new PathMeasure();
+            mMeasure.setPath(mPath, false);
+        }
 
     }
 
@@ -240,7 +243,6 @@ public class RectangleProgressLoadingView extends View {
                 float stop = mMeasure.getLength() * mAnimatorValue;
                 float start = (float) (stop - ((0.5 - Math.abs(mAnimatorValue - 0.5)) * 2000f));
                 mMeasure.getSegment(start, stop, dst1, true);
-
 
                 canvas.drawPath(dst1, mPaint);
 
