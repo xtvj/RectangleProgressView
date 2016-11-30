@@ -21,19 +21,14 @@ public class RectangleProgressLoadingView extends View {
     // 画笔
     private Paint mPaint;
 
-
     //矩形
     private Path mPath;
 
     private PathMeasure mMeasure;
-
-
     private int mWidth;//view宽
     private int mHeight;//view高
 
-
     public void stop() {
-
         mCurrentState = State.NONE;
         if (mStartingAnimator.isRunning()) {
             mStartingAnimator.cancel();
@@ -41,14 +36,10 @@ public class RectangleProgressLoadingView extends View {
         invalidate();
     }
 
-
-
-
     public void start() {
         mCurrentState = State.SEARCHING;
         mStartingAnimator.start();
         invalidate();
-
     }
 
     //状态
@@ -89,7 +80,6 @@ public class RectangleProgressLoadingView extends View {
 
     public void setRadian(int radian){
         mRadian = radian;
-        initPath();
         invalidate();
     }
 
@@ -108,7 +98,6 @@ public class RectangleProgressLoadingView extends View {
         mContext = context;
 
         initPaint();
-
 
         initListener();
 
@@ -235,20 +224,17 @@ public class RectangleProgressLoadingView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-
         switch (mCurrentState) {
             case NONE:
                 if (mStartingAnimator.isRunning()) {
                     mStartingAnimator.cancel();
                 }
                 initPath();
-
                 canvas.drawPath(mPath, mPaint);
                 break;
             case SEARCHING:
 
                 initPath();
-
                 mMeasure.setPath(mPath, false);
                 Path dst1 = new Path();
                 float stop = mMeasure.getLength() * mAnimatorValue;
