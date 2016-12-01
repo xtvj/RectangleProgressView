@@ -14,9 +14,9 @@
         android:id="@+id/rectangle"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:mRadian="100"
+        app:mRadian="20"
         app:time="5000"
-        app:width="100" />
+        app:width="20" />
 
 
     <Button
