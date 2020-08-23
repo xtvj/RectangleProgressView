@@ -1,13 +1,15 @@
 package io.github.xtvj.rectangleprogressview;
 
-import android.app.Activity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import io.github.xtvj.rectangleprogressview.ui.RectangleProgressLoadingView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

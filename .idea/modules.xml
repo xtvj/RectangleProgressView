@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RectangleProgressView.iml" filepath="$PROJECT_DIR$/RectangleProgressView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/RectangleProgressView.iml" filepath="$PROJECT_DIR$/.idea/RectangleProgressView.iml" group="RectangleProgressView" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="RectangleProgressView/app" />
     </modules>
   </component>
 </project>

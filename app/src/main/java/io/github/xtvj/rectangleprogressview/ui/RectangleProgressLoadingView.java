@@ -1,5 +1,6 @@
 package io.github.xtvj.rectangleprogressview.ui;
 
+
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -10,12 +11,17 @@ import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.RectF;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 import io.github.xtvj.rectangleprogressview.R;
+
+import static io.github.xtvj.rectangleprogressview.ui.RectangleProgressLoadingView.State.SEARCHING;
 
 
 public class RectangleProgressLoadingView extends View {
@@ -38,7 +44,7 @@ public class RectangleProgressLoadingView extends View {
     }
 
     public void start() {
-        mCurrentState = State.SEARCHING;
+        mCurrentState = SEARCHING;
         mStartingAnimator.start();
         invalidate();
     }
@@ -134,9 +140,9 @@ public class RectangleProgressLoadingView extends View {
         a.recycle();
     }
 
-    private Handler handler = new Handler() {
+    private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
 
             switch (mCurrentState) {
